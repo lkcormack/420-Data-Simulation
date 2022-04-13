@@ -2,6 +2,8 @@ grpData <- function(grpNames = c("a", "b", "c"),
                     grpMeans = c(40, 50, 60), 
                     grpSDs = c(10, 10, 10), 
                     daLen = 30,
+                    decimal_places=2,
+                    writeFile = TRUE,
                     fileName = "dataFile.csv") {
   # make a grouped data set
   # the length of the first 2 arguments determines the number of groups
@@ -9,9 +11,11 @@ grpData <- function(grpNames = c("a", "b", "c"),
   # entering a single number for gprSDs uses that SD for all groups
   # example call:
   # myData <- grpData(c("alcohol", "thc", "cocaine", "control"), 
-  #                   c(50, 40, 70, 60), 5, 42, "MyGrpData.csv")
+  #                   c(50, 40, 70, 60), 5, 42, 0, 
+  #                   writeFile = FALSE, "MyGrpData.csv")
   
-  # note, must have the tidyverse loaded: library(tidyverse)
+  # import needed packages
+  library(tidyverse)
   
   nGrps <- length(grpNames)
   
@@ -26,6 +30,9 @@ grpData <- function(grpNames = c("a", "b", "c"),
     dataMat[ ,i] <-  rnorm(daLen, grpMeans[i], grpSDs[i])
   }
   
+  # round the data
+  dataMat = round(dataMat, decimal_places)
+  
   # convert to a data frame
   df <- data.frame(dataMat)
   colnames(df) <- grpNames
@@ -36,8 +43,12 @@ grpData <- function(grpNames = c("a", "b", "c"),
     labs(x = "Group")
   print(daPlot)
  
+  df = df %>% pivot_longer(colnames(df), names_to = "group", values_to = "value")
+  
   # write data to file in current directory 
-  write_csv(x = df, file = fileName)
+  if (writeFile){
+    write_csv(x = df, file = fileName)
+  }
   
   # return the data frame just in case you want to do anything else with it
   return(df)
