@@ -29,14 +29,28 @@ pairedT <- function(grpNames = c("a", "b"),
   colnames(df) <- grpNames
   
   # Is there a constraint on the data?
-  if(constraint.L!=NA){
-    L.prblms <- c()
-    L.prblms[1] <- which(df[,1]>constraint.L)
-    L.prblms[2] <- which(df[,2]>constraint.L)
-    df[L.prblms[1],1] <- 
-      df[L.prblms[1],1] + 2*(constraint.L - df[L.prblms[1],1])
-    df[L.prblms[2],2] <- 
-      df[L.prblms[2],2] + 2*(constraint.L - df[L.prblms[2],2])
+  
+  # Lower constraint: add to anything < constraint 
+  # 2*delta, where delta = constraint - value
+  if(is.na(constraint.L)==F){
+    L.prblms <- list()
+    L.prblms[[1]] <- which(df[,1]<constraint.L)
+    L.prblms[[2]] <- which(df[,2]<constraint.L)
+    df[L.prblms[[1]],1] <- 
+      df[L.prblms[[1]],1] + 2*(constraint.L - df[L.prblms[[1]],1])
+    df[L.prblms[[2]],2] <- 
+      df[L.prblms[[2]],2] + 2*(constraint.L - df[L.prblms[[2]],2])
+  }
+  
+  #Same deal for upper constraint, but reverse
+  if(is.na(constraint.U)==F){
+    U.prblms <- list()
+    U.prblms[[1]] <- which(df[,1]>constraint.U)
+    U.prblms[[2]] <- which(df[,2]>constraint.U)
+    df[U.prblms[[1]],1] <- 
+      df[U.prblms[[1]],1] + 2*(constraint.U - df[U.prblms[[1]],1])
+    df[U.prblms[[2]],2] <- 
+      df[U.prblms[[2]],2] + 2*(constraint.U - df[U.prblms[[2]],2])
   }
   
   # write data to file in current directory 
