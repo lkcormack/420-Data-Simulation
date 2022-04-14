@@ -12,6 +12,7 @@
 
 * make a function to merge data frames - Alex
 * function for paired t-test data
+* make binary data generator 
 
 ## for the future
 
