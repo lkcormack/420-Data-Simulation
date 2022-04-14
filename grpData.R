@@ -3,6 +3,7 @@ grpData <- function(grpNames = c("a", "b", "c"),
                     grpSDs = c(10, 10, 10), 
                     daLen = 30,
                     decimal_places=2,
+                    makeplot = FALSE,
                     writeFile = TRUE,
                     fileName = "dataFile.csv") {
   # make a grouped data set
@@ -11,7 +12,7 @@ grpData <- function(grpNames = c("a", "b", "c"),
   # entering a single number for gprSDs uses that SD for all groups
   # example call:
   # myData <- grpData(c("alcohol", "thc", "cocaine", "control"), 
-  #                   c(50, 40, 70, 60), 5, 42, 0, 
+  #                   c(50, 40, 70, 60), 5, 42, 0, makeplot = TRUE
   #                   writeFile = FALSE, "MyGrpData.csv")
   
   # import needed packages
@@ -37,12 +38,16 @@ grpData <- function(grpNames = c("a", "b", "c"),
   df <- data.frame(dataMat)
   colnames(df) <- grpNames
   
+  if (makeplot) {
   #----- plot in order to check that these are the data we want -----
-  daPlot <- ggplot(stack(df), aes(x = ind, y = values)) +
-    geom_boxplot(notch = TRUE) +
-    labs(x = "Group")
-  print(daPlot)
+    # stack() returns ind (factor) and values columns
+    daPlot <- ggplot(stack(df), aes(x = ind, y = values)) +
+      geom_boxplot(notch = TRUE) +
+      labs(x = "Group")
+    print(daPlot)
+  }
  
+  # could've done this before plotting but I didn't
   df = df %>% pivot_longer(colnames(df), names_to = "group", values_to = "value")
   
   # write data to file in current directory 
