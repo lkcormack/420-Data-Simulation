@@ -7,8 +7,8 @@ Functions for simulating data for the PSY 420 class at UT Austin
 
 ## Function specifics
 
-# 2 independent groups
+### 2 independent groups
 
-# >2 independent groups
+### >2 independent groups
 
-# 2 groups repeated measures
+### 2 groups repeated measures
