@@ -1,6 +1,7 @@
 regData <- function(xname = "x", yname = "y", 
                     xRng = c(0, 100), params = c(0, 1), 
-                    daLen = 30, yErr = 1, 
+                    daLen = 30, yErr = 1,
+                    x_dec_plcs = 2, y_dec_plcs = 2,
                     fileName = "dataFile.csv") {
   # make data set with a given slope, y intercept (params) 
   # and a y noise level (yErr) over a range on x
