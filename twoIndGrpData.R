@@ -3,6 +3,8 @@ twoIndGrpData <- function(grpNames = c("a", "b"),
                           grpSD = 10, 
                           daLen = 42,
                           decimal_places=2,
+                          constraint_L = NA,
+                          constraint_U = NA,
                           make_plot = TRUE,
                           write_file = TRUE,
                           fileName = "dataFile.csv") {
@@ -16,6 +18,7 @@ twoIndGrpData <- function(grpNames = c("a", "b"),
   # call grpData. 
   #makeplot is always false in the call as plotting is done locally
   df <- grpData(grpNames,  grpMeans, grpSD, daLen, decimal_places, 
+                constraint.L = constraint_L, constraint.U = constraint_U,
                 makeplot = FALSE, writeFile = write_file, fileName)
   
   if (make_plot) {

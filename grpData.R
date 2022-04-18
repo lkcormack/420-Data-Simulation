@@ -3,6 +3,8 @@ grpData <- function(grpNames = c("a", "b", "c"),
                     grpSDs = c(10, 10, 10), 
                     daLen = 30,
                     decimal_places=2,
+                    constraint.L = NA,
+                    constraint.U = NA,
                     makeplot = FALSE,
                     writeFile = TRUE,
                     fileName = "dataFile.csv") {
@@ -38,17 +40,33 @@ grpData <- function(grpNames = c("a", "b", "c"),
   df <- data.frame(dataMat)
   colnames(df) <- grpNames
   
+  # could've done this before plotting but I didn't
+  df = df %>% pivot_longer(colnames(df), names_to = "group", values_to = "value")
+  
+  # Is there a constraint on the data?
+  # Lower constraint: add to anything < constraint 
+  # 2*delta, where delta = constraint - value
+  if(is.na(constraint.L)==FALSE){
+    L.prblms <- which(df[,2]<constraint.L)
+    df[L.prblms,2] <- 
+      df[L.prblms,2] + 2*(constraint.L - df[L.prblms,2])
+  }
+  
+  #Same deal for upper constraint, but reverse
+  if(is.na(constraint.U)==FALSE){
+    U.prblms <- which(df[,2]>constraint.U)
+    df[U.prblms,2] <- 
+      df[U.prblms,2] + 2*(constraint.U - df[U.prblms,2])
+  }
+  
   if (makeplot) {
-  #----- plot in order to check that these are the data we want -----
+    #----- plot in order to check that these are the data we want -----
     # stack() returns ind (factor) and values columns
-    daPlot <- ggplot(stack(df), aes(x = ind, y = values)) +
+    daPlot <- ggplot(df, aes(x = group, y = value)) +
       geom_boxplot(notch = TRUE) +
       labs(x = "Group")
     print(daPlot)
   }
- 
-  # could've done this before plotting but I didn't
-  df = df %>% pivot_longer(colnames(df), names_to = "group", values_to = "value")
   
   # write data to file in current directory 
   if (writeFile){

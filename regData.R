@@ -23,6 +23,10 @@ regData <- function(xname = "x", yname = "y",
   # compute y
   y = params[1] + params[2]*x + yErr*rnorm(daLen)
   
+  # round the data
+  x = round(x,  x_dec_plcs)
+  y = round(y,  y_dec_plcs)
+  
   # make the data frame
   df <- data.frame(x, y)
   colnames(df) <- c(xname, yname)
