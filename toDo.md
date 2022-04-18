@@ -2,16 +2,16 @@
 
 ## Larry's list
 
-* incoporate rounding from VN into regData - all
-* ditto for regDataCor
-* add optional boundary checks for grpData.R
+* **Done!** : incoporate rounding from VN into regData - all
+* **Done!** : ditto for regDataCor
+* **Done!** : add optional boundary checks for grpData.R
 * **Done!** : grpData for independent 1-way type stuff - pivot to longform (tidy data!) 
 * **Done!** : make a simple t-test function (that  calls grpData)
 
 ## Alex's list 
 
-* make a function to merge data frames - Alex
-* function for paired t-test data
+* **Done!** : make a function to merge data frames - Alex
+* **Done!** : function for paired t-test data
 * make binary data generator 
 
 ## for the future
