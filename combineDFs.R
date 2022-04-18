@@ -15,10 +15,9 @@ combine <- function(dfs = list(),
   
   #Make a vector of factors for each dataset
   D <- ncol(dfs[[1]])
-  ns <- sapply(dfs,length)/D #find sample size for each group
   facts <- list() #set up a list
   for(i in 1:N){ #fill in list with rep'd factors for each grou
-    facts[[i]] <- rep(factors[i],ns[i]) 
+    facts[[i]] <- rep(factors[i],length(dfs[[i]][,1])) 
   }
   facts <- unlist(facts) #convert to a big vector 
   
