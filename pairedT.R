@@ -28,7 +28,7 @@ pairedT <- function(grpNames = c("a", "b"),
                       )
   
   # round the data
-  dataMat = round(dataMat, decimal_places)
+  df = round(df, decimal_places)
   
   # Add col names
   colnames(df) <- grpNames
