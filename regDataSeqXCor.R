@@ -2,6 +2,7 @@ regDataSeqXCor <- function(xname = "x", yname = "y",
                     xRng = c(0, 100), yRng = c(0, 100), 
                     daLen = 10, yPerX = 5, r = 0.7,
                     withinS = TRUE,
+                    x_dec_plcs = 2, y_dec_plcs = 2,
                     fileName = "dataFile.csv") {
   # make a correlated data set
   # example call:
@@ -11,7 +12,8 @@ regDataSeqXCor <- function(xname = "x", yname = "y",
   # yPerX observations at each value of x.
   # The "withinS = TRUE" when there is any grouping variable (e.g. rat strain)
   
-  # note: must have the tidyverse loaded: library(tidyverse)
+  # import needed packages
+  library(tidyverse)
   
   # generate the unique x values
   xVals = seq(-1, 1, length = daLen)
@@ -38,6 +40,10 @@ regDataSeqXCor <- function(xname = "x", yname = "y",
   y = y - min(y);
   y = y/max(y);
   y = y * (mx-mn)+mn;
+  
+  # round the data
+  x = round(x,  x_dec_plcs)
+  y = round(y,  y_dec_plcs)
   
   # if within-subjects, make a factor of subject IDs
   if (withinS) {

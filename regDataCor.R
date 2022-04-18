@@ -1,12 +1,14 @@
 regDataCor <- function(xname = "x", yname = "y", 
                     xRng = c(0, 100), yRng = c(0, 100), 
                     daLen = 30, r = 0.5, 
+                    x_dec_plcs = 2, y_dec_plcs = 2,
                     fileName = "dataFile.csv") {
   # make a correlated data set
   # example call:
   # myData <- regDataCor("myx", "myy", c(-50, 50), c(0, 50), 50, 0.4, "myData.csv")
   
-  # note: must have the tidyverse loaded: library(tidyverse)
+  # import needed packages
+  library(tidyverse)
   
   # generate the un-normalized data
   x = rnorm(daLen)                         # random x
@@ -26,6 +28,10 @@ regDataCor <- function(xname = "x", yname = "y",
   y = y - min(y);
   y = y/max(y);
   y = y * (mx-mn)+mn;
+  
+  # round the data
+  x = round(x,  x_dec_plcs)
+  y = round(y,  y_dec_plcs)
   
   # make the data frame
   df <- data.frame(x, y)

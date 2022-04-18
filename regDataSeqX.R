@@ -2,6 +2,7 @@ regDataSeqX <- function(xname = "x", yname = "y",
                     xRng = c(0, 100), params = c(0, 1), 
                     daLen = 30, yErr = 1,
                     yPerX = 5, withinS = FALSE,
+                    x_dec_plcs = 2, y_dec_plcs = 2,
                     fileName = "dataFile.csv") {
   # related data set with a given slope and y int with a sequential x axis
   # example call:
@@ -12,7 +13,8 @@ regDataSeqX <- function(xname = "x", yname = "y",
   # The "withinS = TRUE" is currently just for cosmetic purposes as the "subjects"
   # behave identically except for noise
   
-  # note: must have the tidyverse loaded: library(tidyverse)
+  # import needed packages
+  library(tidyverse)
   
   # generate the unique x values
   xVals = seq(-1, 1, length = daLen)
@@ -32,13 +34,9 @@ regDataSeqX <- function(xname = "x", yname = "y",
   # compute y
   y = params[1] + params[2]*x + yErr*rnorm(daLen)
   
-  
-  # # rescale y
-  # mx <- yRng[2]
-  # mn <- yRng[1]
-  # y = y - min(y);
-  # y = y/max(y);
-  # y = y * (mx-mn)+mn;
+  # round the data
+  x = round(x,  x_dec_plcs)
+  y = round(y,  y_dec_plcs)
   
   # if within-subjects, make a factor of subject IDs
   if (withinS) {
