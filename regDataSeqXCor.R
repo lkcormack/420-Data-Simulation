@@ -1,13 +1,20 @@
 regDataSeqXCor <- function(xname = "x", yname = "y", 
                     xRng = c(0, 100), yRng = c(0, 100), 
-                    daLen = 10, yPerX = 5, r = 0.7,
+                    num_x_vals = 10, yPerX = 5, r = 0.7,
                     withinS = TRUE,
                     x_dec_plcs = 2, y_dec_plcs = 2,
                     fileName = "dataFile.csv") {
   # make a correlated data set
+  # Arguments:
+  #   xname, yname: names of the domain and range variables
+  #   xRng, yRng: limits of the domain and range
+  #   num_x_vals: 
   # example call:
-  # myData <- regDataSeqXCor("myx", "myy", c(-50, 50), c(0, 50), 8, 5, 0.7, 
-  # withinS = TRUE, fileName = "myDataFile.csv")
+  # myData <- regDataSeqXCor("myx", "myy", 
+  #                          c(-50, 50), c(0, 50),
+  #                          num_x_vals=8, yPerX=5, r=0.7, 
+  #                          withinS = FALSE, 
+  #                          fileName = "myDataFile.csv")
   # Similar to regDataCor() except it makes a regularly spaced x-axis with 
   # yPerX observations at each value of x.
   # The "withinS = TRUE" when there is any grouping variable (e.g. rat strain)
@@ -16,11 +23,11 @@ regDataSeqXCor <- function(xname = "x", yname = "y",
   library(tidyverse)
   
   # generate the unique x values
-  xVals = seq(-1, 1, length = daLen)
+  xVals = seq(-1, 1, length = num_x_vals)
   
   # make instances of each x value for every y value so we have a "tidy" data frame
   # in which each row corresponds to a single observation (i.e. an x,y pair).
-  yPerXVec = rep(yPerX, daLen) # how many y's we want at each unique x
+  yPerXVec = rep(yPerX, num_x_vals) # how many y's we want at each unique x
   x = rep(xVals, yPerXVec)
   
   # now make the correlated y-values
@@ -51,7 +58,7 @@ regDataSeqXCor <- function(xname = "x", yname = "y",
     prefix <- "s"
     suffix <- seq(1:yPerX)
     uniqNames <- paste(prefix, suffix, sep = "")
-    sIds <- rep(uniqNames, daLen)
+    sIds <- rep(uniqNames, num_x_vals)
   }
   
   # make the data frame
