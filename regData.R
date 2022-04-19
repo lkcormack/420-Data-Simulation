@@ -6,9 +6,11 @@ regData <- function(xname = "x", yname = "y",
   # make data set with a given slope, y intercept (params) 
   # and a y noise level (yErr) over a range on x
   # example call:
-  # myData <- regData("myx", "myy", c(-50, 50), c(1, 3), 50, 5, "myData.csv")
+  # myData <- regData("myx", "myy", c(-50, 50), c(1, 3), 
+  #                 50, 5, fileName = "myData.csv")
   
-  # note: must have the tidyverse loaded: library(tidyverse)
+  # note: must have the tidyverse loaded: 
+  library(tidyverse)
   
   # generate the un-normalized data
   x = rnorm(daLen)                         # random x

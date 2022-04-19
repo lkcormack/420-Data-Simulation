@@ -8,6 +8,12 @@ twoIndGrpData <- function(grpNames = c("a", "b"),
                           make_plot = TRUE,
                           write_file = TRUE,
                           fileName = "dataFile.csv") {
+  # make two independent groups data ("t test data")
+  # This is just a wrapper for grpData to make generating two-group
+  # data a little easier. 
+  # Example call:
+  # my_df <-  twoIndGrpData(grpNames = c("female", "male"), grpMeans = c(110, 100),
+  #                          grpSD = 15, daLen = 50, fileName = "sexDiffs.csv")
   
   # import needed packages
   library(tidyverse)  # for write_csv()

@@ -7,7 +7,7 @@ regDataSeqXCor <- function(xname = "x", yname = "y",
   # make a correlated data set
   # example call:
   # myData <- regDataSeqXCor("myx", "myy", c(-50, 50), c(0, 50), 8, 5, 0.7, 
-  # withinS = TRUE, "myDataFile.csv")
+  # withinS = TRUE, fileName = "myDataFile.csv")
   # Similar to regDataCor() except it makes a regularly spaced x-axis with 
   # yPerX observations at each value of x.
   # The "withinS = TRUE" when there is any grouping variable (e.g. rat strain)

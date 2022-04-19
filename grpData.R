@@ -15,7 +15,7 @@ grpData <- function(grpNames = c("a", "b", "c"),
   # example call:
   # myData <- grpData(c("alcohol", "thc", "cocaine", "control"), 
   #                   c(50, 40, 70, 60), 5, 42, 0, makeplot = TRUE
-  #                   writeFile = FALSE, "MyGrpData.csv")
+  #                   writeFile = TRUE, filename = "MyGrpData.csv")
   
   # import needed packages
   library(tidyverse)
@@ -47,14 +47,14 @@ grpData <- function(grpNames = c("a", "b", "c"),
   # Lower constraint: add to anything < constraint 
   # 2*delta, where delta = constraint - value
   if(is.na(constraint.L)==FALSE){
-    L.prblms <- which(df[,2]<constraint.L)
+    L.prblms <- which(df[,2] < constraint.L)
     df[L.prblms,2] <- 
       df[L.prblms,2] + 2*(constraint.L - df[L.prblms,2])
   }
   
   #Same deal for upper constraint, but reverse
   if(is.na(constraint.U)==FALSE){
-    U.prblms <- which(df[,2]>constraint.U)
+    U.prblms <- which(df[,2] > constraint.U)
     df[U.prblms,2] <- 
       df[U.prblms,2] + 2*(constraint.U - df[U.prblms,2])
   }

@@ -6,8 +6,12 @@ regDataSeqX <- function(xname = "x", yname = "y",
                     fileName = "dataFile.csv") {
   # related data set with a given slope and y int with a sequential x axis
   # example call:
-  # myData <- regDataSeqX("myx", "myy", c(-50, 50), c(0, 50), 8, 5, 0.7, 
-  #                       withinS = TRUE, "myDataFile.csv")
+  # myData <- regDataSeqX("myx", "myy", 
+  #                       c(-50, 50), c(0, 0.5), 
+  #                       8, 25, 
+  #                       10, withinS = TRUE, 
+  #                       fileName = "myDataFile.csv")
+  #
   # Similar to regData() except it makes a regularly spaced x-axis with 
   # yPerX observations at each value of x.
   # The "withinS = TRUE" is currently just for cosmetic purposes as the "subjects"
