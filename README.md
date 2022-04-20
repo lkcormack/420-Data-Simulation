@@ -9,18 +9,21 @@ These functions are written to generate some of the most commonly data types and
 ## Functions
 
 ### grouped data
-#### grpData - single factor multiple group data
-#### twoIndGrpData - wrapper for grpData make two group data more easily
-#### pairedT - two group within-subjects group data
-#### combine (in combineDFs.R) - stack data frames and add a factor to tag the original DFs
+
+* **grpData** - single factor multiple group data
+* **twoIndGrpData** - wrapper for grpData make two group data more easily
+* **pairedT** - two group within-subjects group data
+* **combine** (in combineDFs.R) - stack data frames and add a factor to tag the original DFs
 
 ### continuous x-y data
-#### regData - x-y data; user specifies slope and y-intercept
-#### regDataCor - x-y data; user specifies correlation
+
+* **regData** - x-y data; user specifies slope and y-intercept
+* **regDataCor** - x-y data; user specifies correlation
 
 ### x-y data with sequential evenly spaced x-values
-#### regDataSeqX - x-y data with sequential evenly spaced x-values; user specifies slope and y-intercept
-#### regDataSeqXCor - x-y data with sequential evenly spaced x-values; user specifies correlation
+
+* **regDataSeqX** - x-y data with sequential evenly spaced x-values; user specifies slope and y-intercept
+* **regDataSeqXCor** - x-y data with sequential evenly spaced x-values; user specifies correlation
 
 ## Function specifics (work in progress)
 
